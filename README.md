@@ -1,3 +1,8 @@
+# [WIP] resin-octoprint
+remotely control your 3d-printer with [octoprint](https://github.com/foosel/OctoPrint) and resin.io !
+
+**octoprint is exposed on port 80 which can be remotely accessible via resin.io [public URL](https://docs.resin.io/management/devices/#enable-public-device-url) feature**
+
 ## Getting started
 
 - Sign up on [resin.io](https://dashboard.resin.io/signup)

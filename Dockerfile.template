@@ -1,0 +1,51 @@
+FROM resin/%%RESIN_MACHINE_NAME%%-debian:jessie
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+	python-pip \
+	python-dev \
+	git \
+	build-essential \
+	libav-tools \
+	avrdude \
+	curl \
+	subversion \
+	libjpeg8-dev \
+	imagemagick \
+	libav-tools \
+	cmake \
+	haproxy \
+  && apt-get clean \
+  && rm -rf /tmp/* /var/tmp/*  \
+  && rm -rf /var/lib/apt/lists/*
+
+# Enable haproxy
+RUN echo 'ENABLED=1' >> /etc/default/haproxy
+
+# Save source folder
+RUN printf "%s\n" "${PWD##}" > SOURCEFOLDER
+
+# Deploy haproxy config
+COPY "$SOURCEFOLDER/Dockerbin/haproxy.cfg" /etc/haproxy/haproxy.cfg
+
+# Move to app dir
+WORKDIR /usr/src/app
+
+# setup Webcam
+RUN ln -s /usr/include/linux/videodev2.h /usr/include/linux/videodev.h
+RUN cd /usr/src/app && git clone https://github.com/jacksonliam/mjpg-streamer.git \
+	&& cd mjpg-streamer/mjpg-streamer-experimental && LD_LIBRARY_PATH=. make
+
+# Install Octoprint from source
+RUN git clone https://github.com/foosel/OctoPrint.git ./octoprint \
+  && cd /usr/src/app/octoprint && pip install --upgrade pip && pip install setuptools \
+  && cd /usr/src/app/octoprint && pip install -r requirements.txt && python setup.py install \
+  && cd /usr/src/app/octoprint && pip install https://github.com/BillyBlaze/OctoPrint-TouchUI/archive/master.zip
+
+# Move app to filesystem
+COPY "$SOURCEFOLDER/app" ./
+
+## uncomment if you want systemd
+ENV INITSYSTEM on
+
+# Start app
+CMD ["bash", "/usr/src/app/start.sh"]

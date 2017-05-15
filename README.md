@@ -8,7 +8,7 @@ remotely control your 3d-printer with [octoprint](https://github.com/foosel/Octo
 - Sign up on [resin.io](https://dashboard.resin.io/signup)
 - go through the [getting started guide](http://docs.resin.io/raspberrypi/nodejs/getting-started/) and create a new application
 - clone this repository to your local workspace
-- add the _resin remote_ to your local workspace using the useful shortcut in the dashboard UI ![remoteadd](https://raw.githubusercontent.com/resin-io-playground/boombeastic/master/docs/gitresinremote.png)
+- add the _resin remote_ to your local workspace using the useful shortcut in the dashboard UI
 - `git push resin master`
 - see the magic happening, your device is getting updated Over-The-Air!
 

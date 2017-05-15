@@ -1,4 +1,4 @@
-# [WIP] resin-octoprint
+# resin-octoprint
 remotely control your 3d-printer with [octoprint](https://github.com/foosel/OctoPrint) and resin.io !
 
 **octoprint is exposed on port 80 which can be remotely accessible via resin.io [public URL](https://docs.resin.io/management/devices/#enable-public-device-url) feature**
@@ -15,8 +15,8 @@ remotely control your 3d-printer with [octoprint](https://github.com/foosel/Octo
 ## Configure via [environment variables](https://docs.resin.io/management/env-vars/)
 Variable Name | Value | Description | Device-specific
 ------------ | ------------- | ------------- | -------------
-**`RESIN_HOST_CONFIG_gpu_mem`** | `128` | the amount of RAM dedicated to the GPU | Raspberry Pi (all revs)
-**`RESIN_HOST_CONFIG_start_x`** | `1` | required to enable the Raspberry Pi Camera Module | Raspberry Pi (all revs)
+**`RESIN_HOST_CONFIG_gpu_mem`** | `128` | the amount of RAM dedicated to the GPU | Raspberry Pi (all revs) - only required if you plan camera streaming
+**`RESIN_HOST_CONFIG_start_x`** | `1` | required to enable the Raspberry Pi Camera Module | Raspberry Pi (all revs) - only required if you plan camera streaming
 
 Apply the above settings in the "Fleet Configuration" panel (if applying it for the all devices withing your application), or "Device Configuration" panel (if applying it for a single device).
 

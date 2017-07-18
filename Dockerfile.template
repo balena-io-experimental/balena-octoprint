@@ -40,6 +40,7 @@ RUN git clone https://github.com/foosel/OctoPrint.git ./octoprint \
   && cd /usr/src/app/octoprint && pip install --upgrade pip && pip install setuptools \
   && cd /usr/src/app/octoprint && pip install -r requirements.txt && python setup.py install \
   && cd /usr/src/app/octoprint && pip install https://github.com/BillyBlaze/OctoPrint-TouchUI/archive/master.zip
+	&& cd /usr/src/app/octoprint && pip install https://github.com/malnvenshorn/OctoPrint-CostEstimation/archive/master.zip
 
 # Move app to filesystem
 COPY "$SOURCEFOLDER/app" ./

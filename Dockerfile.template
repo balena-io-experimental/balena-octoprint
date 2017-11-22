@@ -21,11 +21,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Enable haproxy
 RUN echo 'ENABLED=1' >> /etc/default/haproxy
 
-# Save source folder
-RUN printf "%s\n" "${PWD##}" > SOURCEFOLDER
-
 # Deploy haproxy config
-COPY "$SOURCEFOLDER/Dockerbin/haproxy.cfg" /etc/haproxy/haproxy.cfg
+COPY ./Dockerbin/haproxy.cfg /etc/haproxy/haproxy.cfg
 
 # Move to app dir
 WORKDIR /usr/src/app
@@ -36,11 +33,11 @@ RUN git clone https://github.com/foosel/OctoPrint.git ./octoprint \
   && cd /usr/src/app/octoprint && pip install -r requirements.txt && python setup.py install \
   && cd /usr/src/app/octoprint && pip install https://github.com/BillyBlaze/OctoPrint-TouchUI/archive/master.zip \
 	&& cd /usr/src/app/octoprint && pip install https://github.com/marian42/octoprint-preheat/archive/master.zip \
-	&& cd /usr/src/app/octoprint && pip install "https://github.com/OctoPrint/OctoPrint-DisplayProgress/archive/master.zip"
+	&& cd /usr/src/app/octoprint && pip install "https://github.com/OctoPrint/OctoPrint-DisplayProgress/archive/master.zip" \
 	&& cd /usr/src/app/octoprint && pip install https://github.com/malnvenshorn/OctoPrint-CostEstimation/archive/master.zip
 
 # Move app to filesystem
-COPY "$SOURCEFOLDER/app" ./
+COPY ./app ./
 
 ## uncomment if you want systemd
 ENV INITSYSTEM on

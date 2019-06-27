@@ -10,6 +10,7 @@ remotely control your 3d-printer with [octoprint](https://github.com/foosel/Octo
   - [TouchUI](https://plugins.octoprint.org/plugins/touchui/)
   - [Preheat](https://plugins.octoprint.org/plugins/preheat/)
   - [DisplayProgress](https://plugins.octoprint.org/plugins/displayprogress/)
+  - [Cost Estimation](https://plugins.octoprint.org/plugins/costestimation/)
   - [BedLevelVisualizer](https://plugins.octoprint.org/plugins/bedlevelvisualizer/)
   - [Floating Navbar](https://plugins.octoprint.org/plugins/floatingnavbar/)
   - [Navbar Temperature](https://plugins.octoprint.org/plugins/navbartemp/)

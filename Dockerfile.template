@@ -1,25 +1,30 @@
-FROM resin/%%RESIN_MACHINE_NAME%%-debian:jessie
+FROM balenalib/%%RESIN_MACHINE_NAME%%-debian:stretch
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-	python-pip \
-	python-dev \
-	git \
-	build-essential \
-	libav-tools \
-	avrdude \
-	curl \
-	subversion \
-	libjpeg8-dev \
-	imagemagick \
-	libav-tools \
-	cmake \
-	haproxy \
-  && apt-get clean \
-  && rm -rf /tmp/* /var/tmp/*  \
-  && rm -rf /var/lib/apt/lists/*
+RUN install_packages \
+  python-pip \
+  python-dev \
+  python-imaging \
+  git \
+  build-essential \
+  libav-tools \
+  avrdude \
+  uvcdynctrl \
+  guvcview \
+  curl \
+  subversion \
+  libjpeg8-dev \
+  imagemagick \
+  libav-tools \
+  cmake \
+  libraspberrypi-bin \
+  libraspberrypi-dev \
+  ffmpeg \
+  haproxy
 
 # Enable haproxy
 RUN echo 'ENABLED=1' >> /etc/default/haproxy
+
+RUN ln -s -T /usr/include/freetype2/ /usr/include/freetype
 
 # Deploy haproxy config
 COPY ./Dockerbin/haproxy.cfg /etc/haproxy/haproxy.cfg
@@ -29,18 +34,31 @@ WORKDIR /usr/src/app
 
 # Install Octoprint from source
 RUN git clone https://github.com/foosel/OctoPrint.git ./octoprint \
-  && cd /usr/src/app/octoprint && pip install --upgrade pip && pip install setuptools \
+#  && cd /usr/src/app/octoprint && pip install --upgrade pip \
+  && pip install setuptools \
   && cd /usr/src/app/octoprint && pip install -r requirements.txt && python setup.py install \
   && cd /usr/src/app/octoprint && pip install https://github.com/BillyBlaze/OctoPrint-TouchUI/archive/master.zip \
 	&& cd /usr/src/app/octoprint && pip install https://github.com/marian42/octoprint-preheat/archive/master.zip \
 	&& cd /usr/src/app/octoprint && pip install "https://github.com/OctoPrint/OctoPrint-DisplayProgress/archive/master.zip" \
-	&& cd /usr/src/app/octoprint && pip install https://github.com/malnvenshorn/OctoPrint-CostEstimation/archive/master.zip
+	&& cd /usr/src/app/octoprint && pip install https://github.com/jneilliii/OctoPrint-BedLevelVisualizer/archive/master.zip \
+  && cd /usr/src/app/octoprint && pip install "https://github.com/jneilliii/OctoPrint-FloatingNavbar/archive/master.zip" \
+  && cd /usr/src/app/octoprint && pip install "https://github.com/imrahil/OctoPrint-NavbarTemp/archive/master.zip" \
+  && cd /usr/src/app/octoprint && pip install "https://github.com/ntoff/OctoPrint-Estop/archive/master.zip" \
+  && cd /usr/src/app/octoprint && pip install "https://github.com/paukstelis/OctoPrint-Cancelobject/archive/master.zip" \
+  && cd /usr/src/app/octoprint && pip install "https://github.com/FormerLurker/Octolapse/archive/v0.3.4.zip"
+
+# Build mjpg_streamer
+RUN git clone https://github.com/jacksonliam/mjpg-streamer.git ./mjpg-streamer \
+  && cd mjpg-streamer/mjpg-streamer-experimental && make && make install
 
 # Move app to filesystem
 COPY ./app ./
 
 ## uncomment if you want systemd
 ENV INITSYSTEM on
+
+# Enable udevd so that plugged dynamic hardware devices show up in our container.
+ENV UDEV=1
 
 # Start app
 CMD ["bash", "/usr/src/app/start.sh"]

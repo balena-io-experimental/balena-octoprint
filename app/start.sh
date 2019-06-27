@@ -6,6 +6,7 @@ modprobe bcm2835-v4l2 >/dev/null 2>&1 || true
 # Start haproxy
 service haproxy start >/dev/null 2>&1 || true
 
+# Make sure mpjg-streamer can find the plugins
 export LD_LIBRARY_PATH="/usr/src/app/mjpg-streamer/mjpg-streamer-experimental"
 
 # start picam stream

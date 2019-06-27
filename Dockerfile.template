@@ -27,6 +27,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Enable haproxy
 RUN echo 'ENABLED=1' >> /etc/default/haproxy
 
+# Symlink to fix installing Octolapse
 RUN ln -s -T /usr/include/freetype2/ /usr/include/freetype
 
 # Deploy haproxy config
@@ -37,7 +38,7 @@ WORKDIR /usr/src/app
 
 # Install Octoprint from source
 RUN git clone https://github.com/foosel/OctoPrint.git ./octoprint \
-  && pip install setuptools wheel --upgrade \
+  && cd /usr/src/app/octoprint && pip install setuptools wheel --upgrade \
   && cd /usr/src/app/octoprint && pip install -r requirements.txt && python setup.py install \
   && cd /usr/src/app/octoprint && pip install https://github.com/BillyBlaze/OctoPrint-TouchUI/archive/master.zip \
 	&& cd /usr/src/app/octoprint && pip install https://github.com/marian42/octoprint-preheat/archive/master.zip \

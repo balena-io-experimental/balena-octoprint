@@ -1,4 +1,4 @@
-# bbalena-octoprint
+# balena-octoprint
 remotely control your 3d-printer with [octoprint](https://github.com/foosel/OctoPrint) and Balena !
 
 **octoprint is exposed on port 80 which can be remotely accessible via Balena [public URL](https://www.balena.io/docs/learn/manage/actions/#enable-public-device-url) feature**

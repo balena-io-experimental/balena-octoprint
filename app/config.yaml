@@ -4,9 +4,9 @@ server:
     firstRun: true
     commands:
         # Restarting the application may cause data loss, reboot instead.
-        serverRestartCommand: /usr/src/app/reboot.sh
-        systemRestartCommand: /usr/src/app/reboot.sh
-        systemShutdownCommand: /usr/src/app/shutdown.sh
+        serverRestartCommand: /usr/src/app/balenactl.py reboot
+        systemRestartCommand: /usr/src/app/balenactl.py reboot
+        systemShutdownCommand: /usr/src/app/balenactl.py shutdown
 folder:
     uploads: /data/uploads
     timelapse: /data/timelapse

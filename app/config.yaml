@@ -1,0 +1,22 @@
+accessControl:
+    enabled: true
+server:
+    firstRun: true
+    commands:
+        # Restarting the application may cause data loss, reboot instead.
+        serverRestartCommand: /usr/src/app/reboot.sh
+        systemRestartCommand: /usr/src/app/reboot.sh
+        systemShutdownCommand: /usr/src/app/shutdown.sh
+folder:
+    uploads: /data/uploads
+    timelapse: /data/timelapse
+    timelapse_tmp: /data/timelapse/tmp
+    logs: /data/logs
+    virtualSd: /data/virtualSd
+    watched: /data/watched
+    plugins: /data/plugins
+    slicingProfiles: /data/slicingProfiles
+    printerProfiles: /data/printerProfiles
+    scripts: /data/scripts
+webcam:
+    ffmpeg: /usr/bin/ffmpeg

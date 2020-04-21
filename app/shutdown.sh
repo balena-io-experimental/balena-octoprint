@@ -185,13 +185,8 @@ HEREDOC
 ###############################################################################
 
 _simple() {
-  # During a restart any data that is not stored in /data will be lost.
-  if [ -f /usr/src/app/config.yaml ]; then
-    mv --no-clobber --verbose /usr/src/app/config.yaml /data
-  fi
-
-  # start Octoprint
-  octoprint --verbose --config /data/config.yaml serve --iknowwhatimdoing --basedir /data --port=80
+  # Shutdown the device
+  curl -X POST --header "Content-Type:application/json" "$BALENA_SUPERVISOR_ADDRESS/v1/shutdown?apikey=$BALENA_SUPERVISOR_API_KEY"
 }
 
 ###############################################################################

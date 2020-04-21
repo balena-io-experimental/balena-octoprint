@@ -6,14 +6,16 @@ set -o pipefail
 set -o nounset
 # set -o xtrace
 
+mkdir -p /data/octoprint-data
+
 # During a restart any data that is not stored in /data will be lost.
 if [ -f /usr/src/app/config.yaml ]; then
-  mv --no-clobber --verbose /usr/src/app/config.yaml /data
+  mv --no-clobber --verbose /usr/src/app/config.yaml /data/octoprint-data
 fi
 
 # start Octoprint
 octoprint \
-  --basedir /data \
-  --config /data/config.yaml \
+  --basedir /data/octoprint-data \
+  --config /data/octoprint-data/config.yaml \
   --verbose \
   serve --iknowwhatimdoing --port 80

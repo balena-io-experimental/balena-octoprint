@@ -8,15 +8,15 @@ server:
         systemRestartCommand: /usr/src/app/balenactl.py reboot
         systemShutdownCommand: /usr/src/app/balenactl.py shutdown
 folder:
-    uploads: /data/uploads
-    timelapse: /data/timelapse
-    timelapse_tmp: /data/timelapse/tmp
-    logs: /data/logs
-    virtualSd: /data/virtualSd
-    watched: /data/watched
-    plugins: /data/plugins
-    slicingProfiles: /data/slicingProfiles
-    printerProfiles: /data/printerProfiles
-    scripts: /data/scripts
+    uploads: /data/octoprint-data/uploads
+    timelapse: /data/octoprint-data/timelapse
+    timelapse_tmp: /data/octoprint-data/timelapse/tmp
+    logs: /data/octoprint-data/logs
+    virtualSd: /data/octoprint-data/virtualSd
+    watched: /data/octoprint-data/watched
+    plugins: /data/octoprint-data/plugins
+    slicingProfiles: /data/octoprint-data/slicingProfiles
+    printerProfiles: /data/octoprint-data/printerProfiles
+    scripts: /data/octoprint-data/scripts
 webcam:
     ffmpeg: /usr/bin/ffmpeg

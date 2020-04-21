@@ -12,4 +12,8 @@ if [ -f /usr/src/app/config.yaml ]; then
 fi
 
 # start Octoprint
-octoprint --verbose --config /data/config.yaml serve --iknowwhatimdoing --basedir /data --port=80
+octoprint \
+  --basedir /data \
+  --config /data/config.yaml \
+  --verbose \
+  serve --iknowwhatimdoing --port 80

@@ -59,13 +59,6 @@ class BalenaCtl(cmd.Cmd):
 		"""Exit the balena shell."""
 		return self.do_exit(arg)
 
-	# def _perform_request(self, url, data=None):
-	# 	params = json.dumps(data).encode('utf8') if data is not None else None
-	# 	headers = {'content-type': 'application/json'}
-	# 	req = urllib.request.Request(url, data=params, headers=headers)
-	# 	response = urllib.request.urlopen(req)
-	# 	return response
-
 	def _perform_request(self, url, payload=None):
 		response = requests.post(url, data=payload)
 		if not response.ok:

@@ -1,7 +1,7 @@
 FROM balenalib/%%BALENA_MACHINE_NAME%%:buster
 
 RUN apt update && apt install -y --no-install-recommends \
-	build-essential \
+	# build-essential \
 	ffmpeg \
 	git \
 	python3-dev \

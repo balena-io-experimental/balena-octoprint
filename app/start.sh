@@ -8,12 +8,29 @@ set -o nounset
 
 mkdir -p /data/octoprint-data
 
-# During a restart any data that is not stored in /data will be lost.
-if [ -f /usr/src/app/config.yaml ]; then
-  mv --no-clobber --verbose /usr/src/app/config.yaml /data/octoprint-data
+if [ ! -f /data/octoprint-data/config.yaml ]; then
+  touch /data/octoprint-data/config.yaml
+
+  octoprint --config /data/octoprint-data/config.yaml \
+    config set --bool server.firstRun true
+
+  octoprint --config /data/octoprint-data/config.yaml \
+    config set --int server.port 80
+
+  octoprint --config /data/octoprint-data/config.yaml \
+    config set server.commands.serverRestartCommand "/usr/src/app/balenactl.py reboot"
+
+  octoprint --config /data/octoprint-data/config.yaml \
+    config set server.commands.systemRestartCommand "/usr/src/app/balenactl.py reboot"
+
+  octoprint --config /data/octoprint-data/config.yaml \
+    config set server.commands.systemShutdownCommand "/usr/src/app/balenactl.py shutdown"
+
+  octoprint --config /data/octoprint-data/config.yaml \
+    config set webcam.ffmpeg /usr/bin/ffmpeg
 fi
 
-# start Octoprint
+# Start Octoprint
 octoprint \
   --basedir /data/octoprint-data \
   --config /data/octoprint-data/config.yaml \

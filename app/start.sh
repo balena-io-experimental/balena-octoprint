@@ -30,7 +30,7 @@ if [ ! -f /data/octoprint-data/config.yaml ]; then
     config set webcam.ffmpeg /usr/bin/ffmpeg
 fi
 
-# Start Octoprint
+# Start OctoPrint
 octoprint \
   --basedir /data/octoprint-data \
   --config /data/octoprint-data/config.yaml \

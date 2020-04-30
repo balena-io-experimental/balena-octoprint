@@ -17,7 +17,7 @@ RUN apt update && apt install -y --no-install-recommends \
 WORKDIR /usr/src/app
 
 # Install OctoPrint from source
-RUN git clone https://github.com/foosel/OctoPrint.git \
+RUN git clone https://github.com/OctoPrint/OctoPrint.git \
   && cd /usr/src/app/OctoPrint && pip3 install --upgrade pip && pip3 install setuptools \
   && cd /usr/src/app/OctoPrint && pip3 install .
 

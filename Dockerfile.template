@@ -1,22 +1,22 @@
-FROM resin/%%RESIN_MACHINE_NAME%%-debian:jessie
+FROM balenalib/%%RESIN_MACHINE_NAME%%:bullseye
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-	python-pip \
-	python-dev \
+RUN apt-get update && apt-get install --no-install-recommends \
+	python3 \
+	python3-pip \
+	python3-dev \
 	git \
 	build-essential \
-	libav-tools \
+	ffmpeg \
 	avrdude \
 	curl \
 	subversion \
-	libjpeg8-dev \
+	libjpeg62-turbo-dev \
 	imagemagick \
-	libav-tools \
 	cmake \
 	haproxy \
-  && apt-get clean \
-  && rm -rf /tmp/* /var/tmp/*  \
-  && rm -rf /var/lib/apt/lists/*
+	&& apt-get clean \
+	&& rm -rf /tmp/* /var/tmp/*  \
+	&& rm -rf /var/lib/apt/lists/*
 
 # Enable haproxy
 RUN echo 'ENABLED=1' >> /etc/default/haproxy
@@ -29,9 +29,9 @@ WORKDIR /usr/src/app
 
 # Install Octoprint from source
 RUN git clone https://github.com/foosel/OctoPrint.git ./octoprint \
-  && cd /usr/src/app/octoprint && pip install --upgrade pip && pip install setuptools \
-  && cd /usr/src/app/octoprint && pip install -r requirements.txt && python setup.py install \
-  && cd /usr/src/app/octoprint && pip install https://github.com/BillyBlaze/OctoPrint-TouchUI/archive/master.zip \
+	&& cd /usr/src/app/octoprint && pip install --upgrade pip && pip install setuptools \
+	&& cd /usr/src/app/octoprint && pip install -r requirements.txt && python3 setup.py install \
+	&& cd /usr/src/app/octoprint && pip install https://github.com/BillyBlaze/OctoPrint-TouchUI/archive/master.zip \
 	&& cd /usr/src/app/octoprint && pip install https://github.com/marian42/octoprint-preheat/archive/master.zip \
 	&& cd /usr/src/app/octoprint && pip install "https://github.com/OctoPrint/OctoPrint-DisplayProgress/archive/master.zip" \
 	&& cd /usr/src/app/octoprint && pip install https://github.com/malnvenshorn/OctoPrint-CostEstimation/archive/master.zip

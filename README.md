@@ -1,7 +1,7 @@
-# Balena Octoprint
-**Remotely control your 3d-printer with [Octoprint](https://github.com/foosel/OctoPrint) and balenaCloud!** Octoprint is exposed on port 80 which can be remotely accessible via the balenaCloud [public URL](https://www.balena.io/docs/learn/develop/runtime/#public-device-urls) feature.
+# Balena OctoPrint
+**Remotely control your 3d-printer with [OctoPrint](https://github.com/foosel/OctoPrint) and balenaCloud!** Octoprint is exposed on port 80 which can be remotely accessible via the balenaCloud [public URL](https://www.balena.io/docs/learn/develop/runtime/#public-device-urls) feature.
 
-This is a very simple implementation of Octoprint designed to get you up and running with the basics. It's recommended that once you're up and running that you fork this repo and add your own customizations. For a more fully-featured installation check out [octobalena](https://github.com/MatthewCroughan/octobalena).
+This is a very simple implementation of OctoPrint designed to get you up and running with the basics. It's recommended that once you're up and running that you fork this repo and add your own customizations. For a more fully-featured installation check out [Octobalena](https://github.com/MatthewCroughan/octobalena).
 
 
 ## Software setup

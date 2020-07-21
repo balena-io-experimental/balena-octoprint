@@ -1,0 +1,12 @@
+FROM --platform=linux/arm/v7 nunofgs/octoprint:master-alpine
+
+RUN PYTHONUSERBASE=/usr/local/ pip install --no-cache-dir \
+    "https://github.com/marian42/octoprint-preheat/archive/master.zip" \
+    "https://github.com/OllisGit/OctoPrint-DisplayLayerProgress/releases/latest/download/master.zip" \
+    "https://github.com/malnvenshorn/OctoPrint-FilamentManager/archive/master.zip" \
+    "https://github.com/eyal0/OctoPrint-PrintTimeGenius/archive/master.zip"
+
+# Seed the initial config.yaml
+COPY ./config.yaml /data/config.yaml
+
+CMD ["octoprint","serve","--iknowwhatimdoing","--host","0.0.0.0"]

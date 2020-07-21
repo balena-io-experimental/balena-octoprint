@@ -1,32 +1,14 @@
-# resin-octoprint
-remotely control your 3d-printer with [octoprint](https://github.com/foosel/OctoPrint) and resin.io !
+# Balena Octoprint
+**Remotely control your 3d-printer with [Octoprint](https://github.com/foosel/OctoPrint) and balenaCloud!** Octoprint is exposed on port 80 which can be remotely accessible via the balenaCloud [public URL](https://www.balena.io/docs/learn/develop/runtime/#public-device-urls) feature.
 
-**octoprint is exposed on port 80 which can be remotely accessible via resin.io [public URL](https://docs.resin.io/management/devices/#enable-public-device-url) feature**
-
-## Getting started
-
-- Sign up on [resin.io](https://dashboard.resin.io/signup)
-- go through the [getting started guide](http://docs.resin.io/raspberrypi/nodejs/getting-started/) and create a new application
-- clone this repository to your local workspace
-- add the _resin remote_ to your local workspace using the useful shortcut in the dashboard UI
-- `git push resin master`
-- see the magic happening, your device is getting updated Over-The-Air!
-
-## Configure via [environment variables](https://docs.resin.io/management/env-vars/)
-Variable Name | Value | Description | Device-specific
------------- | ------------- | ------------- | -------------
-**`RESIN_HOST_CONFIG_gpu_mem`** | `128` | the amount of RAM dedicated to the GPU | Raspberry Pi (all revs) - only required if you plan camera streaming
-**`RESIN_HOST_CONFIG_start_x`** | `1` | required to enable the Raspberry Pi Camera Module | Raspberry Pi (all revs) - only required if you plan camera streaming
-
-Apply the above settings in the "Fleet Configuration" panel (if applying it for the all devices withing your application), or "Device Configuration" panel (if applying it for a single device).
+This is a very simple implementation of Octoprint designed to get you up and running with the basics. It's recommended that once you're up and running that you fork this repo and add your own customizations. For a more fully-featured installation check out [octobalena](https://github.com/MatthewCroughan/octobalena).
 
 
-## License
+## Software setup
 
-Copyright 2016 Resinio Ltd.
+Running this project is as simple as deploying it to a balenaCloud application, then downloading the OS image from the dashboard and flashing your SD card.
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+[![](https://balena.io/deploy.png)](https://dashboard.balena-cloud.com/deploy)
 
-<http://www.apache.org/licenses/LICENSE-2.0>
+We recommend this button as the de-facto method for deploying new apps on balenaCloud, but as an alternative, you can set this project up with the repo and balenaCLI if you choose. Get the code from this repo, and set up [balenaCLI](https://github.com/balena-io/balena-cli) on your computer to push the code to balenaCloud and your devices. [Read more](https://www.balena.io/docs/learn/deploy/deployment/).
 
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.

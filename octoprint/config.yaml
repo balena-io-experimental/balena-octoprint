@@ -1,0 +1,15 @@
+webcam:
+  timelapseEnabled: false
+  webcamEnabled: false
+plugins:
+  DisplayLayerProgress:
+    showAllPrinterMessages: false
+    showHeightInStatusBar: false
+    showLayerInStatusBar: false
+    showOnBrowserTitle: false
+    showOnNavBar: false
+    showOnPrinterDisplay: true
+serial:                                                                                                                                 
+  autoconnect: true                                                                                                                     
+  baudrate: 0                                                                                                                           
+  port: AUTO

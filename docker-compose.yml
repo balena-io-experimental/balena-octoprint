@@ -1,0 +1,12 @@
+version: '2'
+volumes:
+  octoprint-data: {}
+services:
+  octoprint:
+    build: ./octoprint
+    restart: always
+    volumes:
+      - 'octoprint-data:/data'
+    privileged: true
+    ports:
+      - '80:5000'

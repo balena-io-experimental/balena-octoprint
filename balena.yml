@@ -1,0 +1,17 @@
+name: "Octoprint"
+description: "Remotely control your 3D-printer with Octoprint and balena!"
+type: "sw.application"
+assets:
+  repository:
+    type: "blob.asset"
+    data:
+      url: "https://github.com/balenalabs-incubator/balena-octoprint"
+  logo:
+    type: "blob.asset"
+    data:
+      url: "https://raw.githubusercontent.com/balenalabs-incubator/balena-octoprint/master/logo.png"
+data:
+  defaultDeviceType: "raspberrypi3"
+  supportedDeviceTypes:
+    - "raspberrypi3"
+    - "fincm3"

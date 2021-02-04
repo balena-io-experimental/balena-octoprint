@@ -1,6 +1,14 @@
-FROM --platform=linux/arm/v7 nunofgs/octoprint:master-alpine
+FROM debian
 
-RUN PYTHONUSERBASE=/usr/local/ pip install --no-cache-dir \
+RUN apt-get update && apt-get install -y \
+  python3 python3-pip \
+  && rm -rf /var/lib/apt/lists/*
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1
+RUN python -m pip install virtualenv
+WORKDIR /app
+RUN python -m pip install --no-cache-dir OctoPrint
+
+RUN python -m pip install --no-cache-dir \
     "https://github.com/marian42/octoprint-preheat/archive/master.zip" \
     "https://github.com/OllisGit/OctoPrint-DisplayLayerProgress/releases/latest/download/master.zip" \
     "https://github.com/malnvenshorn/OctoPrint-FilamentManager/archive/master.zip" \

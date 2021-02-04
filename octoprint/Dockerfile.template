@@ -1,11 +1,7 @@
-FROM debian
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian-python:build
 
-RUN apt-get update && apt-get install -y \
-  python3 python3-pip \
-  && rm -rf /var/lib/apt/lists/*
-RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1
-RUN python -m pip install virtualenv
-WORKDIR /app
+ENV UDEV=1
+
 RUN python -m pip install --no-cache-dir OctoPrint
 
 RUN python -m pip install --no-cache-dir \
@@ -15,6 +11,6 @@ RUN python -m pip install --no-cache-dir \
     "https://github.com/eyal0/OctoPrint-PrintTimeGenius/archive/master.zip"
 
 # Seed the initial config.yaml
-COPY ./config.yaml /data/config.yaml
+COPY ./config.yaml /root/.octoprint/config.yaml
 
 CMD ["octoprint","serve","--iknowwhatimdoing","--host","0.0.0.0"]

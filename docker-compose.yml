@@ -6,7 +6,7 @@ services:
     build: ./octoprint
     restart: always
     volumes:
-      - 'octoprint-data:/data'
+      - 'octoprint-data:/root/.octoprint'
     privileged: true
     ports:
       - '80:5000'

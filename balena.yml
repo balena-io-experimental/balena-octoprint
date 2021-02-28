@@ -15,3 +15,4 @@ data:
   supportedDeviceTypes:
     - "raspberrypi3"
     - "fincm3"
+    - "orange-pi-zero

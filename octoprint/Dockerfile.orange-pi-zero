@@ -1,0 +1,14 @@
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian-node:10-stretch-run
+
+RUN apt-get update && apt-get install --yes --no-install-recommends python-pip python-dev python-setuptools python-virtualenv git libyaml-dev build-essential && pip install pip --upgrade && pip install octoprint
+
+RUN PYTHONUSERBASE=/usr/local/ pip install --no-cache-dir \
+    "https://github.com/marian42/octoprint-preheat/archive/master.zip" \
+    "https://github.com/OllisGit/OctoPrint-DisplayLayerProgress/releases/latest/download/master.zip" \
+    "https://github.com/malnvenshorn/OctoPrint-FilamentManager/archive/master.zip" \
+    "https://github.com/eyal0/OctoPrint-PrintTimeGenius/archive/master.zip"
+
+# Seed the initial config.yaml
+COPY ./config.yaml /data/config.yaml
+
+CMD ["octoprint","serve","--iknowwhatimdoing","--host","0.0.0.0"]

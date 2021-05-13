@@ -8,5 +8,7 @@ services:
     volumes:
       - 'octoprint-data:/data'
     privileged: true
+    labels:
+      io.balena.features.supervisor-api: 1
     ports:
       - '80:5000'

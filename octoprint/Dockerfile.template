@@ -8,6 +8,8 @@ RUN PYTHONUSERBASE=/usr/local/ pip install --no-cache-dir \
     "https://github.com/malnvenshorn/OctoPrint-FilamentManager/archive/master.zip" \
     "https://github.com/eyal0/OctoPrint-PrintTimeGenius/archive/master.zip"
 
+WORKDIR /usr/src/octoprint
+
 # Seed the initial config.yaml
 COPY ./config.yaml /data/config.yaml
 COPY start.sh start.sh

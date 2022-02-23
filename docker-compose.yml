@@ -1,12 +1,14 @@
 version: '2'
 volumes:
   octoprint-data: {}
+  plugins:
 services:
   octoprint:
     build: ./octoprint
     restart: always
     volumes:
       - 'octoprint-data:/data'
+      - 'plugins:/usr/local/lib/python3.7/dist-packages'
     privileged: true
     labels:
       io.balena.features.supervisor-api: 1

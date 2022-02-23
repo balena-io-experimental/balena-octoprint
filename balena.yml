@@ -4,7 +4,7 @@ type: sw.application
 post-provisioning: >-
   ## Usage instructions
 
-  Once your device joins the fleet you'll need to allow some time for it to download the application. When it's completed you should be able to access the Octoprint web interface by entering balena.local in a web browser.
+  Once your device joins the fleet you'll need to allow some time for it to download the application. When it's completed you should be able to access the Octoprint web interface by entering octoprint.local in a web browser.
 assets:
   repository:
     type: blob.asset

@@ -1,17 +1,34 @@
-FROM --platform=linux/arm/v7 nunofgs/octoprint:master-alpine
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian:buster
 
-RUN apk add curl
+# Install Dependencies
+RUN apt-get update && install_packages libavahi-compat-libdnssd1 \
+    zlib1g-dev libjpeg-dev \
+    python3-dev \
+    python3-wheel  \
+    python3-pip \
+    python3-setuptools \
+    fontconfig \
+    libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libavfilter-dev libswscale-dev libswresample-dev \
+    libsrtp2-dev libsrtp2-1 libopus-dev libvpx-dev \
+    ffmpeg \
+    pkg-config \
+    python-dev python3-dev \
+    gcc g++ wget dosfstools \
+    imagemagick libv4l-dev \
+    git make cmake \
+    curl jq psmisc
 
-RUN PYTHONUSERBASE=/usr/local/ pip install --no-cache-dir \
-    "https://github.com/marian42/octoprint-preheat/archive/master.zip" \
-    "https://github.com/OllisGit/OctoPrint-DisplayLayerProgress/releases/latest/download/master.zip" \
-    "https://github.com/malnvenshorn/OctoPrint-FilamentManager/archive/master.zip" \
-    "https://github.com/eyal0/OctoPrint-PrintTimeGenius/archive/master.zip"
+# Update pip
+RUN pip3 install --upgrade pip
+
+# Install OctoPrint v1.7.3
+RUN pip3 install OctoPrint==1.7.3
 
 WORKDIR /usr/src/octoprint
 
-# Seed the initial config.yaml
+# Seed the initial config.yaml 
 COPY ./config.yaml /data/config.yaml
+
 COPY start.sh start.sh
 
 CMD ["sh","start.sh"]

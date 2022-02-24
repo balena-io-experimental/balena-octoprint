@@ -1,10 +1,15 @@
 name: Octoprint
 description: Remotely control your 3D-printer with Octoprint and balena!
 type: sw.application
-post-provisioning: >-
+post-provisioning: |-
   ## Usage instructions
 
   Once your device joins the fleet you'll need to allow some time for it to download the application. When it's completed you should be able to access the Octoprint web interface by entering octoprint.local in a web browser.
+
+  ### Version Details
+
+  * Octoprint version: 1.7.3
+  * Full [Changelog](https://github.com/balenalabs-incubator/balena-octoprint/blob/master/CHANGELOG.md)
 assets:
   repository:
     type: blob.asset
@@ -20,4 +25,5 @@ data:
   supportedDeviceTypes:
     - raspberrypi3
     - fincm3
+    - raspberrypi4-64
 version: 0.1.2

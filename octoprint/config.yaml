@@ -9,7 +9,10 @@ plugins:
     showOnBrowserTitle: false
     showOnNavBar: false
     showOnPrinterDisplay: true
-serial:                                                                                                                                 
+  thespaghettidetective:
+    auth_token: b7588cf3a16c787c7203
+    sentry_opt: in
+serial:
   autoconnect: true                                                                                                                     
   baudrate: 0                                                                                                                           
   port: AUTO
